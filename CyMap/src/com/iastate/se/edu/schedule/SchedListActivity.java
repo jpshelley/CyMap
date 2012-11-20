@@ -48,25 +48,40 @@ public class SchedListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		Typeface tf = Typeface.createFromAsset(getAssets(),
+		        "fonts/Roboto-Thin.ttf");
+		
 		LayoutInflater inflater = LayoutInflater.from(this);
 		scrollView = (MyHorizontalScrollView) inflater.inflate(R.layout.schedule_menu_scroll, null);
 		setContentView(scrollView);
 		
+		
 		/* The pop out view */
 		menu = inflater.inflate(R.layout.schedule_menu, null);
+		/* Cyclone Cardinal Shade */
 		menu.setBackgroundColor(Color.rgb(130, 36, 51));
 		
 		/* The actual schedule shown */
 		app = inflater.inflate(R.layout.schedule_menu_app, null);
-		ViewGroup tabBar = (ViewGroup) app.findViewById(R.id.tabBar);
+		/* Cyclone Gold Highlight */
 		app.setBackgroundColor(Color.rgb(250, 218, 99));
+		
+		/* Set menu title font detail*/
+		TextView menuTitle = (TextView) app.findViewById(R.id.mainTitle);
+		createFontDetail(tf, menuTitle);
+		
+		ViewGroup tabBar = (ViewGroup) app.findViewById(R.id.tabBar);
+		/* Cyclone Cardinal Shade */
+		tabBar.setBackgroundColor(Color.rgb(130, 36, 51));
 
 		ListView listView = (ListView) menu.findViewById(R.id.list);
 		ViewUtil.initListView(this, listView, "Item ", 5, android.R.layout.simple_list_item_1);
-		Typeface tf = Typeface.createFromAsset(getAssets(),
-		        "fonts/Roboto-Thin.ttf");
+		
+		/* Helps sets the fonts and size of menu header */
+
 		TextView headerType = (TextView) menu.findViewById(R.id.menu_title);
-		headerType.setTypeface(tf);
+		createFontDetail(tf, headerType);
+		
 		listView = (ListView) menu.findViewById(R.id.list);
 		ViewUtil.initListView(this, listView, "Menu ", 5, android.R.layout.simple_list_item_1);
 		
@@ -79,6 +94,18 @@ public class SchedListActivity extends Activity {
 		int scrollToViewIndex = 1;
 		scrollView.initView(children, scrollToViewIndex, new SizeCallbackMenu(buttonSlide));
 		
+	}
+
+	/**
+	 * Helps create the side menu
+	 * 
+	 * @param tf
+	 * @param view 
+	 */
+	private void createFontDetail(Typeface tf, TextView view) {
+		view.setTypeface(tf);
+		view.setTextSize(24);
+		view.setTextColor(Color.WHITE);
 	}
 	
 	/**

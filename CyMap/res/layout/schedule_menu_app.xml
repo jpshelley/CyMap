@@ -24,11 +24,13 @@
             android:src="@drawable/action_settings" />
 
         <TextView
+            android:id="@+id/mainTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Class Schedule"
+            android:textColor="@android:color/white"
             android:gravity="center"
-            android:textSize="12sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <ListView

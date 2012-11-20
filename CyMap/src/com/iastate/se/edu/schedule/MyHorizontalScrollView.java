@@ -99,7 +99,7 @@ public class MyHorizontalScrollView extends HorizontalScrollView {
 			/* The listener will remove itself as a layout listener to the HSV */
 			scrollView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 			
-			/* Allow the SizeCallBack to 'see' the Views before we remove them abd re-add them */
+			/* Allow the SizeCallBack to 'see' the Views before we remove them and re-add them */
 			/* This lets the SizeCallBack prepare View sizes, ahead of calls to SizeCallback.getviewSize() */
 			sizeCallback.onGlobalLayout();
 			

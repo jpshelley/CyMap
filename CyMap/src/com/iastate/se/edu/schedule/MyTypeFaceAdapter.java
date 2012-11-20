@@ -1,6 +1,7 @@
 package com.iastate.se.edu.schedule;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class MyTypeFaceAdapter extends ArrayAdapter<String> {
 				"fonts/Roboto-Thin.ttf");
 		tv.setTypeface(tf);
 		tv.setTextSize(56);
+		tv.setTextColor(Color.WHITE);
 		return tv;
 	}
 
