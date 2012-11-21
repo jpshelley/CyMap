@@ -23,6 +23,7 @@ public final class R {
         public static final int iastate=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int istate=0x7f020003;
+        public static final int splash=0x7f020004;
     }
     public static final class id {
         public static final int actionBarSched=0x7f07000d;
@@ -47,6 +48,7 @@ public final class R {
         public static final int schedule_menu=0x7f030002;
         public static final int schedule_menu_app=0x7f030003;
         public static final int schedule_menu_scroll=0x7f030004;
+        public static final int splash=0x7f030005;
     }
     public static final class menu {
         public static final int actionbar_schedule=0x7f060000;
@@ -57,5 +59,6 @@ public final class R {
         public static final int hello=0x7f050000;
         public static final int menu_settings=0x7f050002;
         public static final int menu_title=0x7f050003;
+        public static final int splash=0x7f050004;
     }
 }
