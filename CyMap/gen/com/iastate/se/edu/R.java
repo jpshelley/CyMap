@@ -20,10 +20,12 @@ public final class R {
     }
     public static final class drawable {
         public static final int action_settings=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int istate=0x7f020002;
+        public static final int iastate=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int istate=0x7f020003;
     }
     public static final class id {
+        public static final int actionBarSched=0x7f07000d;
         public static final int app=0x7f070007;
         public static final int btnAddApt=0x7f070001;
         public static final int btnMap=0x7f070000;
@@ -34,7 +36,7 @@ public final class R {
         public static final int list=0x7f070006;
         public static final int mainTitle=0x7f07000a;
         public static final int menu=0x7f070004;
-        public static final int menu_settings=0x7f07000d;
+        public static final int menu_settings=0x7f07000e;
         public static final int menu_title=0x7f070005;
         public static final int tabBar=0x7f070008;
         public static final int top=0x7f07000c;
@@ -47,7 +49,8 @@ public final class R {
         public static final int schedule_menu_scroll=0x7f030004;
     }
     public static final class menu {
-        public static final int activity_main=0x7f060000;
+        public static final int actionbar_schedule=0x7f060000;
+        public static final int activity_main=0x7f060001;
     }
     public static final class string {
         public static final int app_name=0x7f050001;

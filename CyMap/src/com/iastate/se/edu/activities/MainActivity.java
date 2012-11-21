@@ -17,11 +17,12 @@ public class MainActivity extends Activity {
 	private Button btnAddApt;
 	
 	private Context thisCtx;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thisCtx = this;
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);        
         loadObjects();
     }
 
@@ -35,9 +36,6 @@ public class MainActivity extends Activity {
     	btnMap       = (Button)findViewById(R.id.btnMap);
     	btnViewSched = (Button)findViewById(R.id.btnViewSched);
     	btnAddApt    = (Button)findViewById(R.id.btnAddApt);
-    	
-
-
     	
     	btnMap.setOnClickListener(new OnClickListener() {
 			

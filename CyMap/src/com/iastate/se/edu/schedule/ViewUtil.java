@@ -1,5 +1,7 @@
 package com.iastate.se.edu.schedule;
 
+import java.util.Date;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -46,38 +48,16 @@ public class ViewUtil {
 	public static void initListView(Context context, ListView listView,
 			String prefix, int numItems, int layout) {
 		/*
-		 * By using SetAdapter method in ListView we can add a String Array to
+		 * By using SetAdapter method in ListView we can add a String Array to a
 		 * List
 		 */
-		String[] stringArray = new String[numItems];
-		/* Adds the days to the menu items */
-		for (int i = 0; i < stringArray.length; i++) {
-			switch (i) {
-			case 0:
-				stringArray[i] = "Monday";
-				break;
-			case 1:
-				stringArray[i] = "Tuesday";
-				break;
-			case 2:
-				stringArray[i] = "Wednesday";
-				break;
-			case 3:
-				stringArray[i] = "Thursday";
-				break;
-			case 4:
-				stringArray[i] = "Friday";
-				break;
-			default:
-				stringArray[i] = "Today";
-				break;
-			}
-		}
+		String[] stringArray = new String[] { "Monday", "Tuesday", "Wednesday",
+				"Thursday", "Friday", "Add Class +" };
+
 		listView.setAdapter(new MyTypeFaceAdapter(context, layout, stringArray));
-//		listView.setAdapter(new ArrayAdapter<String>(context, layout,
-//				stringArray));
 		listView.setBackgroundColor(Color.rgb(130, 36, 51));
 		listView.setOnItemClickListener(new OnItemClickListener() {
+
 			public void onItemClick(AdapterView<?> parent, View view, int pos,
 					long id) {
 				Context context = view.getContext();
@@ -85,6 +65,80 @@ public class ViewUtil {
 						+ parent.getItemAtPosition(pos);
 				Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
 				System.out.println(msg);
+
+				String day = parent.getItemAtPosition(pos).toString();
+				slideMenuOnClick(view);
+				setMenuTitleOnClick(view, day);
+				updateScheduleView(view, day);
+			}
+
+			/**
+			 * Slides the menu back on the multiple day views
+			 * 
+			 * @param view
+			 */
+			private void slideMenuOnClick(View view) {
+				int menuWidth = view.getMeasuredWidth();
+
+				/* Ensure the menu is visible */
+				view.setVisibility(View.VISIBLE);
+
+				if (SchedListActivity.menuVisible) {
+					/* Scroll to menuWidth to disappear */
+					SchedListActivity.scrollView.smoothScrollTo(menuWidth, 0);
+				} else {
+					/* Scroll to 0 to reveal menu */
+					int left = 0;
+					SchedListActivity.scrollView.smoothScrollTo(left, 0);
+				}
+				SchedListActivity.menuVisible = !SchedListActivity.menuVisible;
+			}
+
+			/**
+			 * Sets the menu title on the main schedule page to match whats been
+			 * clicked.
+			 * 
+			 * @param view
+			 */
+			private void setMenuTitleOnClick(View view, String day) {
+				if (day.equals(Day.MONDAY)) {
+
+				} else if (day.equals(Day.TUESDAY)) {
+
+				} else if (day.equals(Day.WEDNESDAY)) {
+
+				} else if (day.equals(Day.THURSDAY)) {
+
+				} else if (day.equals(Day.FRIDAY)) {
+
+				} else if (day.equals("Add Class +")) {
+
+				} else {
+					
+				}
+			}
+
+			/**
+			 * Helps update the list view on the main schedule page.
+			 * 
+			 * @param view
+			 */
+			private void updateScheduleView(View view, String day) {
+				if (day.equals(Day.MONDAY)) {
+
+				} else if (day.equals(Day.TUESDAY)) {
+
+				} else if (day.equals(Day.WEDNESDAY)) {
+
+				} else if (day.equals(Day.THURSDAY)) {
+
+				} else if (day.equals(Day.FRIDAY)) {
+
+				} else if (day.equals("Add Class +")) {
+
+				} else {
+					
+				}
 			}
 
 		});
