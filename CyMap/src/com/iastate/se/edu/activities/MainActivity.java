@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 				final String packageName = "com.iastate.se.edu.schedule";
 		        
 		        try {
-					Class c = Class.forName(packageName + "." + "SchedListActivity");
+					Class<?> c = Class.forName(packageName + "." + "SchedListActivity");
 					Intent i = new Intent(thisCtx, c);
 					startActivity(i);
 				} catch (ClassNotFoundException e) {

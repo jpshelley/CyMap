@@ -42,6 +42,8 @@ import com.iastate.se.edu.schedule.MyHorizontalScrollView.SizeCallback;
 public class SchedListActivity extends Activity {
 	static MyHorizontalScrollView scrollView;
 	static View menu;
+	static ListView dayListView;
+	static ListView classListView;
 	View app;
 	ImageView buttonSlide;
 	static boolean menuVisible = false;
@@ -73,22 +75,23 @@ public class SchedListActivity extends Activity {
 		TextView menuTitle = (TextView) app.findViewById(R.id.mainTitle);
 		createFontDetail(tf, menuTitle);
 
+		/* Creates the header for the app */
 		ViewGroup tabBar = (ViewGroup) app.findViewById(R.id.tabBar);
 		/* Cyclone Cardinal Shade */
 		tabBar.setBackgroundColor(Color.rgb(130, 36, 51));
 
-		ListView listView = (ListView) menu.findViewById(R.id.list);
-		ViewUtil.initListView(this, listView, "Item ", 5,
+		/* Creates the menu list */
+		dayListView = (ListView) menu.findViewById(R.id.list);
+		ViewUtil.initListView(this, dayListView, "Item ", 5,
 				android.R.layout.simple_list_item_1);
-
 		/* Helps sets the fonts and size of menu header */
-
 		TextView headerType = (TextView) menu.findViewById(R.id.menu_title);
 		createFontDetail(tf, headerType);
 
-		listView = (ListView) menu.findViewById(R.id.list);
-		ViewUtil.initListView(this, listView, "Menu ", 5,
-				android.R.layout.simple_list_item_1);
+		/* Creates the students schedule */
+		classListView = (ListView) app.findViewById(R.id.classList);
+		ViewUtil.initClassView(this, classListView, "Menu ", 5,
+				android.R.layout.simple_list_item_1, Day.EMPTY);
 
 		buttonSlide = (ImageView) tabBar.findViewById(R.id.buttonSlide);
 		buttonSlide.setOnClickListener(new ClickListenerForScrolling(
@@ -112,7 +115,7 @@ public class SchedListActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
+		switch (item.getItemId()) {
 		case R.id.actionBarSched:
 			Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 			break;
@@ -121,6 +124,7 @@ public class SchedListActivity extends Activity {
 		}
 		return true;
 	}
+
 	/**
 	 * Helps create the side menu
 	 * 
@@ -143,7 +147,8 @@ public class SchedListActivity extends Activity {
 
 		HorizontalScrollView scrollView;
 		View menu;
-		//static boolean menuVisible = false;
+
+		// static boolean menuVisible = false;
 
 		public ClickListenerForScrolling(HorizontalScrollView scrollView,
 				View menu) {

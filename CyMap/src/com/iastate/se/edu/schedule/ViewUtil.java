@@ -1,11 +1,10 @@
 package com.iastate.se.edu.schedule;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -69,7 +68,7 @@ public class ViewUtil {
 				String day = parent.getItemAtPosition(pos).toString();
 				slideMenuOnClick(view);
 				setMenuTitleOnClick(view, day);
-				updateScheduleView(view, day);
+				updateScheduleView(context, view, day);
 			}
 
 			/**
@@ -114,7 +113,7 @@ public class ViewUtil {
 				} else if (day.equals("Add Class +")) {
 
 				} else {
-					
+
 				}
 			}
 
@@ -123,24 +122,128 @@ public class ViewUtil {
 			 * 
 			 * @param view
 			 */
-			private void updateScheduleView(View view, String day) {
-				if (day.equals(Day.MONDAY)) {
-
-				} else if (day.equals(Day.TUESDAY)) {
-
-				} else if (day.equals(Day.WEDNESDAY)) {
-
-				} else if (day.equals(Day.THURSDAY)) {
-
-				} else if (day.equals(Day.FRIDAY)) {
-
+			private void updateScheduleView(Context context, View view,
+					String day) {
+				if (day.toUpperCase().equals(Day.MONDAY.name())) {
+					ViewUtil.initClassView(context,
+							SchedListActivity.classListView, "Menu", 5,
+							android.R.layout.simple_list_item_1, Day.MONDAY);
+				} else if (day.toUpperCase().equals(Day.TUESDAY.name())) {
+					ViewUtil.initClassView(context,
+							SchedListActivity.classListView, "Menu", 5,
+							android.R.layout.simple_list_item_1, Day.TUESDAY);
+				} else if (day.toUpperCase().equals(Day.WEDNESDAY.name())) {
+					ViewUtil.initClassView(context,
+							SchedListActivity.classListView, "Menu", 5,
+							android.R.layout.simple_list_item_1, Day.WEDNESDAY);
+				} else if (day.toUpperCase().equals(Day.THURSDAY.name())) {
+					ViewUtil.initClassView(context,
+							SchedListActivity.classListView, "Menu", 5,
+							android.R.layout.simple_list_item_1, Day.THURSDAY);
+				} else if (day.toUpperCase().equals(Day.FRIDAY.name())) {
+					ViewUtil.initClassView(context,
+							SchedListActivity.classListView, "Menu", 5,
+							android.R.layout.simple_list_item_1, Day.FRIDAY);
 				} else if (day.equals("Add Class +")) {
 
 				} else {
-					
+
 				}
 			}
 
 		});
+	}
+
+	public static void initClassView(Context context, ListView listView,
+			String prefix, int numItems, int layout, Day day) {
+		/*
+		 * By using SetAdapter method in ListView we can add a String Array to a
+		 * List
+		 */
+		String[] stringArray = null;
+
+		Calendar calendar = Calendar.getInstance();
+		int calDay = 0;
+		if (day == Day.EMPTY) {
+			calDay = calendar.get(Calendar.DAY_OF_WEEK);
+			stringArray = determineToday(stringArray, calDay);
+		} else {
+			stringArray = determineToday(stringArray, day.getById(day));
+		}
+
+		listView.setAdapter(new MyTypeFaceAdapter(context, layout, stringArray));
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long is) {
+				Context context = view.getContext();
+				String msg = "Menu[" + pos + "]: "
+						+ parent.getItemAtPosition(pos);
+				Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+				System.out.println(msg);
+
+				String building = parent.getItemAtPosition(pos).toString();
+				viewMapFromClass(view, building);
+			}
+
+			/**
+			 * Helps view the map from clicking on a class.
+			 * 
+			 * @param view
+			 */
+			private void viewMapFromClass(View view, String building) {
+				if (building.contains("Carver")) {
+					System.out.println("TEST");
+				} else if (building.equals("")) {
+
+				} else if (building.equals("")) {
+
+				} else if (building.equals("")) {
+
+				} else if (building.equals("")) {
+
+				} else if (building.equals("")) {
+
+				} else {
+
+				}
+			}
+
+		});
+	}
+
+	/**
+	 * @param stringArray
+	 * @param day
+	 * @return
+	 */
+	private static String[] determineToday(String[] stringArray, int day) {
+		switch (day) {
+		case 1:
+			stringArray = new String[] { "Today is Sunday!" };
+			break;
+		case 2:
+			stringArray = new String[] { "Today is Monday!", "Carver" };
+			break;
+		case 3:
+			stringArray = new String[] { "Today is Tuesday!" };
+			break;
+		case 4:
+			stringArray = new String[] { "Today is Wednesday!" };
+			break;
+		case 5:
+			stringArray = new String[] { "Today is Thursday!" };
+			break;
+		case 6:
+			stringArray = new String[] { "Today is Friday!" };
+			break;
+		case 7:
+			stringArray = new String[] { "Today is Saturday!" };
+			break;
+		default:
+			break;
+		}
+		return stringArray;
 	}
 }
